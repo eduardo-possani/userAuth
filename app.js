@@ -14,6 +14,8 @@ async function initializeDatabase() {
     }
   }
 
+app.use(express.json());
+
 initializeDatabase().then(() => {
     app.listen(port, () => {
         console.log(`Server is running on port http://localhost:${port}`);
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
   });
 
-app.post('/users', async (req, res) => {
+app.post('/users', async (req, res) => {    
   try {
     const { name, email } = req.body;
     console.log("nome", name, "email",email);
