@@ -19,11 +19,10 @@ async function initializeDatabase() {
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  if (token == null) {
+  if (authHeader == null) {
     return res.sendStatus(401);
   }
-  jwt.verify(token, 'duardoNIcola', (err, user) => {
+  jwt.verify(authHeader, 'duardoNIcola', (err, user) => {
     if (err) {
       return res.sendStatus(403);
     }
@@ -56,6 +55,7 @@ app.post('/users', async (req, res) => {
 });
 
 app.post('/login', async (req ,res)=>{
+  
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ where: { email } });
