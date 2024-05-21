@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     res.send('the server is ok!');
 });
 
-app.post('/users', controllers.userController.createUser);
+app.post('/create', controllers.userController.createUser);
 
 app.post('/login', controllers.userController.login);
 

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const secretKey = process.env.SECRET_KEY;
+const secretKey = '53fffebd-1eaf-4dc1-b67b-13e5a45e847a';
 const User = require('../models/user')
 
 const createUser = async (req, res) => {
@@ -34,7 +34,9 @@ const login = async (req , res) =>{
 
 const list = async (req, res) =>{
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        attributes: { exclude: ['password'] }
+      });
       res.json(users);
     } catch (error) {
       res.status(400).json({ error: error.message });
