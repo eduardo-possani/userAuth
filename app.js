@@ -16,7 +16,7 @@ initializeDatabase().then(() => {
 });
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    res.send('the server is ok!');
 });
 
 app.post('/users', controllers.userController.createUser);
@@ -25,4 +25,3 @@ app.post('/login', controllers.userController.login);
 
 app.get('/users',authenticateToken , controllers.userController.list);
 
-app.post('/tablepary',authenticateToken , controllers.paryController.createPary);
